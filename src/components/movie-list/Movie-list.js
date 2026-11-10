@@ -1,13 +1,20 @@
 import "./Movie-list.css";
 import MovieListItem from "../movie-list-item/Movie-list-item";
 
-const MovieList = () => {
+const MovieList = ({ data }) => {
   return (
-    <div className="movie-list">
-      <MovieListItem name="Empire of Osman" viewers={811} />
-      <MovieListItem name="Ertugrul" viewers={890} />
-      <MovieListItem name="Omar Ibn Xattab" viewers={999} />
-    </div>
+    <ul className="movie-list">
+      {/* 1. Вариант для начинающим передаем свойства через item */}
+      {data.map((item) => {
+        return <MovieListItem name={item.name} viewers={item.viewers} key={item.id} favourite={item.favourite} />;
+      })}
+
+      {/* 2. Вариант (это профиссиональный подход) Деструктурируем id, через свойства передаем через spread operator или напрямую */}
+      {/* {data.map((item) => {
+        const { id, ...otherProps } = item;
+        return <MovieListItem key={id} {...otherProps} />;
+      })} */}
+    </ul>
   );
 };
 
