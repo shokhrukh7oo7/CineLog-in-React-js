@@ -1,4 +1,5 @@
 import "./Movies-add-form.css";
+import { v4 as uuidv4 } from "uuid";
 import React from "react";
 
 class MoviewAddForm extends React.Component {
@@ -16,17 +17,29 @@ class MoviewAddForm extends React.Component {
     });
   };
 
+  addFormHandler = (e) => {
+    e.preventDefault();
+    this.props.addForm({ name: this.state.name, viewers: this.state.views, id: uuidv4() });
+    this.setState({
+      name: "",
+      views: "",
+    });
+  };
+
   render() {
+    const { name, views } = this.state;
+
     return (
       <div className="movies-add-form">
         <h3>Add new movies</h3>
-        <form className="add-form d-flex gap-2">
+        <form className="add-form d-flex gap-2" onSubmit={this.addFormHandler}>
           <input
             type="text"
             className="form-control new-post-label"
             placeholder="Which movie?"
             name="name"
             onChange={this.changeHandlerInput}
+            value={name}
           />
           <input
             type="number"
@@ -34,6 +47,7 @@ class MoviewAddForm extends React.Component {
             placeholder="How many times has it viewed?"
             name="views"
             onChange={this.changeHandlerInput}
+            value={views}
           />
           <button type="submit" className="btn btn-outline-dark">
             Add

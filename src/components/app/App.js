@@ -41,6 +41,15 @@ class App extends React.Component {
     });
   };
 
+  addForm = (item) => {
+    this.setState(({ data }) => {
+      const newArr = [...data, item];
+      return {
+        data: newArr,
+      };
+    });
+  };
+
   render() {
     const { data } = this.state;
     return (
@@ -52,7 +61,7 @@ class App extends React.Component {
             <AppFilter />
           </div>
           <MovieList data={data} onDelete={this.onDelete} />
-          <MoviewAddForm />
+          <MoviewAddForm addForm={this.addForm} />
         </div>
       </div>
     );
