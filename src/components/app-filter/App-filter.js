@@ -1,19 +1,21 @@
-import "./App-filter.css"
+import "./App-filter.css";
 
-const AppFilter = () => {
+const AppFilter = (updateFilterHandler) => {
   return (
     <div className="btn-group">
-      <button className="btn btn-dark" type="button">
-        All movies
-      </button>
-      <button className="btn btn-outline-dark" type="button">
-        Famous movies
-      </button>
-      <button className="btn btn-outline-dark" type="button">
-        Most watched movies
-      </button>
+      {btnsArr.map((btn) => (
+        <button key={btn.name} className="btn btn-dark" type="button" onClick={() => updateFilterHandler(btn.name)}>
+          {btn.label}
+        </button>
+      ))}
     </div>
   );
 };
+
+const btnsArr = [
+  { name: "all", label: "All movies" },
+  { name: "popular", label: "Famous movies" },
+  { name: "mostViewers", label: "Most watched movies" },
+];
 
 export default AppFilter;
