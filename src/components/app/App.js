@@ -21,6 +21,7 @@ class App extends React.Component {
         { name: "Ertugrul", viewers: 890, id: 2, favourite: false, like: false },
         { name: "Omar ibn Hattab", viewers: 999, id: 3, favourite: false, like: false },
       ],
+      term: "",
     };
   }
 
@@ -66,20 +67,34 @@ class App extends React.Component {
     });
   };
 
+  searchHandler = (arr, term) => {
+    if (term.length === 0) {
+      return arr;
+    }
+    return arr.filter((item) => {
+      return item.name.toLowerCase().indexOf(term) > -1;
+    });
+  };
+
+  updateTermHandler = (term) => {
+    this.setState({ term });
+  };
+
   render() {
-    const { data } = this.state;
+    const { data, term } = this.state;
     const allMoviesCount = data.length;
     const favouriteMovieCount = data.filter((c) => c.favourite).length;
+    const visibleData = this.searchHandler(data, term);
 
     return (
       <div className="app font-monospace">
         <div className="content">
           <AppInfo allMoviesCount={allMoviesCount} favouriteMovieCount={favouriteMovieCount} />
           <div className="search-panel">
-            <SearchPanel />
+            <SearchPanel updateTermHandler={this.updateTermHandler} />
             <AppFilter />
           </div>
-          <MovieList onToggleProp={this.onToggleProp} data={data} onDelete={this.onDelete} />
+          <MovieList onToggleProp={this.onToggleProp} data={visibleData} onDelete={this.onDelete} />
           <MoviewAddForm addForm={this.addForm} />
         </div>
       </div>
