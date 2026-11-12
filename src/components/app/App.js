@@ -1,4 +1,5 @@
 import React from "react";
+import { v4 as uuidv4 } from "uuid";
 import "./App.css";
 import AppInfo from "../app-info/App-info";
 import SearchPanel from "../search-panel/Search-panel";
@@ -16,9 +17,9 @@ class App extends React.Component {
     super();
     this.state = {
       data: [
-        { name: "Empire of Osman", viewers: 988, id: 1, favourite: false },
-        { name: "Ertugrul", viewers: 890, id: 2, favourite: false },
-        { name: "Omar ibn Hattab", viewers: 999, id: 3, favourite: true },
+        { name: "Empire of Osman", viewers: 988, id: 1, favourite: false, like: false },
+        { name: "Ertugrul", viewers: 890, id: 2, favourite: false, like: false },
+        { name: "Omar ibn Hattab", viewers: 999, id: 3, favourite: false, like: false },
       ],
     };
   }
@@ -42,8 +43,23 @@ class App extends React.Component {
   };
 
   addForm = (item) => {
+    const newItem = { name: item.name, viewers: item.viewers, id: uuidv4(), favourite: false, like: false };
     this.setState(({ data }) => {
-      const newArr = [...data, item];
+      const newArr = [...data, newItem];
+      return {
+        data: newArr,
+      };
+    });
+  };
+
+  onToggleProp = (id, prop) => {
+    this.setState(({ data }) => {
+      const newArr = data.map((item) => {
+        if (item.id === id) {
+          return { ...item, [prop]: !item[prop] };
+        }
+        return item;
+      });
       return {
         data: newArr,
       };
@@ -52,15 +68,18 @@ class App extends React.Component {
 
   render() {
     const { data } = this.state;
+    const allMoviesCount = data.length;
+    const favouriteMovieCount = data.filter((c) => c.favourite).length;
+
     return (
       <div className="app font-monospace">
         <div className="content">
-          <AppInfo />
+          <AppInfo allMoviesCount={allMoviesCount} favouriteMovieCount={favouriteMovieCount} />
           <div className="search-panel">
             <SearchPanel />
             <AppFilter />
           </div>
-          <MovieList data={data} onDelete={this.onDelete} />
+          <MovieList onToggleProp={this.onToggleProp} data={data} onDelete={this.onDelete} />
           <MoviewAddForm addForm={this.addForm} />
         </div>
       </div>
