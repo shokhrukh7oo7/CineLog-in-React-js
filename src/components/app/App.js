@@ -14,7 +14,7 @@ class App extends React.Component {
   //   { name: "Omar ibn Hattab", viewers: 999, id: 3, favourite: true },
   // ];
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       data: [
         { name: "Empire of Osman", viewers: 988, id: 1, favourite: false, like: false },
@@ -106,7 +106,7 @@ class App extends React.Component {
           <AppInfo allMoviesCount={allMoviesCount} favouriteMovieCount={favouriteMovieCount} />
           <div className="search-panel">
             <SearchPanel updateTermHandler={this.updateTermHandler} />
-            <AppFilter updateFilterHandler={this.updateFilterHandler} />
+            <AppFilter filter={filter} updateFilterHandler={this.updateFilterHandler} />
           </div>
           <MovieList onToggleProp={this.onToggleProp} data={visibleData} onDelete={this.onDelete} />
           <MoviewAddForm addForm={this.addForm} />
