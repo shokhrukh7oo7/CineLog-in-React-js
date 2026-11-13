@@ -6,3 +6,17 @@
   box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.15);
 }
 
+.add-form button {
+  border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+  .add-form {
+    flex-wrap: wrap;
+  }
+  .add-form button {
+    width: 100%;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+}

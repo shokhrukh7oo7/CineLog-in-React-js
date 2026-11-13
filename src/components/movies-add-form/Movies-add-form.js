@@ -48,7 +48,7 @@ class MoviewAddForm extends React.Component {
             onChange={this.changeHandlerInput}
             value={views}
           />
-          <button type="submit" className="btn btn-outline-dark">
+          <button type="submit" className="btn btn-dark">
             Add
           </button>
         </form>

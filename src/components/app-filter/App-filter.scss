@@ -1,3 +1,12 @@
 .btn-group {
   margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-group button {
+  border-radius: 12px !important;
 }
