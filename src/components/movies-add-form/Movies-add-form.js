@@ -1,4 +1,4 @@
-import "./Movies-add-form.css";
+import "./Movies-add-form.scss";
 import React from "react";
 
 class MoviewAddForm extends React.Component {

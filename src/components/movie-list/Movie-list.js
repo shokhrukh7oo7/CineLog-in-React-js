@@ -1,4 +1,4 @@
-import "./Movie-list.css";
+import "./Movie-list.scss";
 import MovieListItem from "../movie-list-item/Movie-list-item";
 
 const MovieList = ({ data, onDelete, onToggleProp }) => {

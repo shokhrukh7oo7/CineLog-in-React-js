@@ -1,4 +1,4 @@
-import "./Movie-list-item.css";
+import "./Movie-list-item.scss";
 
 const MovieListItem = (props) => {
   const { name, viewers, onDelete, onToggleProp, favourite, like } = props;

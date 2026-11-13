@@ -1,6 +1,6 @@
 import React from "react";
 import { v4 as uuidv4 } from "uuid";
-import "./App.css";
+import "./App.scss";
 import AppInfo from "../app-info/App-info";
 import SearchPanel from "../search-panel/Search-panel";
 import AppFilter from "../app-filter/App-filter";

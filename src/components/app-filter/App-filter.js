@@ -1,4 +1,4 @@
-import "./App-filter.css";
+import "./App-filter.scss";
 
 const AppFilter = ({updateFilterHandler, filter}) => {
   return (
