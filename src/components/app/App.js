@@ -58,7 +58,7 @@ class App extends React.Component {
     this.setState(({ data }) => {
       const newArr = data.map((item) => {
         if (item.id === id) {
-          return { ...item, [prop]: !item[prop] };
+          return { ...item, [prop]: !item[prop] }; 
         }
         return item;
       });
